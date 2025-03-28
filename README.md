@@ -153,11 +153,12 @@ kubectl scale deploy nginx --replicas=3
 
 
 ## ☸️ Kubernetes Service Exposure  (Imperative Commands)
+| Command | Description |
+|---------|-------------|
 
-'### 🔹 Basic Service Exposure
+### 🔹 Basic Service Exposure
+| `kubectl expose deployment my-app --port=80 --target-port=8080` | ClusterIP (internal-only) |
 
-# ClusterIP (internal-only)
-kubectl expose deployment my-app --port=80 --target-port=8080
 
 # NodePort (external access via node IP)
 kubectl expose deployment my-app --type=NodePort --port=80 --target-port=8080
