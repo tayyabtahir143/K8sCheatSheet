@@ -211,6 +211,7 @@ kubectl expose deployment nginx-ha \
 
 
 **Network troubleshooting**
+***Note: The netshoot image includes 100+ tools (ss, netstat, iftop, wireshark-cli, etc.). List them with tools -h.***
 ```bash
 kubectl run net-debug --image=nicolaka/netshoot --rm -it -- /bin/bash
 net-debug:~# 
