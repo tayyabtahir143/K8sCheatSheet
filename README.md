@@ -4,7 +4,7 @@ A quick reference guide for Kubernetes commands, optimized for developers and De
 
 ---
 
-## 🔹 Cluster Management
+## 🏭 Cluster Management
 
 | Command | Description |
 |---------|-------------|
@@ -19,7 +19,7 @@ A quick reference guide for Kubernetes commands, optimized for developers and De
 
 ---
 
-## 🔹 Namespace Operations
+## 🏷️ Namespace Operations
 
 | Command | Description |
 |---------|-------------|
@@ -30,7 +30,7 @@ A quick reference guide for Kubernetes commands, optimized for developers and De
 
 ---
 
-## 🔹 🗂️ Pod Management
+## 🗂️ Pod Management
 
 | Command | Description |
 |---------|-------------|
@@ -45,7 +45,7 @@ A quick reference guide for Kubernetes commands, optimized for developers and De
 
 ---
 
-## 🔹 🚀 Deployment & Scaling
+## 🚀 Deployment & Scaling
 
 | Command | Description |
 |---------|-------------|
@@ -58,7 +58,7 @@ A quick reference guide for Kubernetes commands, optimized for developers and De
 
 ---
 
-## 🔹 🌐 Service & Networking
+## 🌐 Service & Networking
 
 | Command | Description |
 |---------|-------------|
@@ -70,7 +70,7 @@ A quick reference guide for Kubernetes commands, optimized for developers and De
 
 ---
 
-## 🔹 🔐 ConfigMaps & Secrets
+## 🔐 ConfigMaps & Secrets
 
 | Command | Description |
 |---------|-------------|
@@ -82,7 +82,7 @@ A quick reference guide for Kubernetes commands, optimized for developers and De
 
 ---
 
-## 🔹 📦 Stateful Workloads
+## 📦 Stateful Workloads
 
 | Command | Description |
 |---------|-------------|
@@ -93,7 +93,7 @@ A quick reference guide for Kubernetes commands, optimized for developers and De
 
 ---
 
-## 🔹 📄 YAML Operations
+## 📄 YAML Operations
 
 | Command | Description |
 |---------|-------------|
@@ -105,7 +105,7 @@ A quick reference guide for Kubernetes commands, optimized for developers and De
 
 ---
 
-## 🔹 🧠 Advanced Commands
+## 🧠 Advanced Commands
 
 | Command | Description |
 |---------|-------------|
@@ -127,7 +127,7 @@ kubectl scale deploy nginx --replicas=3
 ```
 
 
-## 🔹 🔍 Debugging & Diagnostics
+## 🔍 Debugging & Diagnostics
 
 | Command | Description |
 |---------|-------------|
@@ -146,7 +146,7 @@ kubectl scale deploy nginx --replicas=3
 
 
 
-## ☸️ Kubernetes Service Exposure  (Imperative Commands)
+## 🌐 Kubernetes Service Exposure  (Imperative Commands)
 ### 🔹 Basic Service Exposure
 | Command | Description |
 |---------|-------------|
@@ -220,6 +220,16 @@ kubectl logs <pod> > pod-logs.log
 **Network troubleshooting**
 ```bash
 kubectl run net-debug --image=nicolaka/netshoot --rm -it -- /bin/bash
+net-debug:~# 
+
+#Try these commands for troubleshooting:
+
+dig kubernetes.default.svc.cluster.local
+
+# Or for external DNS:
+
+dig google.com
+
 ```
 
 **Backup ETCD (Cluster State):**
