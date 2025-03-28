@@ -152,13 +152,12 @@ kubectl scale deploy nginx --replicas=3
 | `kubectl auth can-i <verb> <resource>` | Check RBAC permissions |
 
 **Advanced Debugging:**
-# Capture pod state for analysis
 ```bash
+# Capture pod state for analysis
 kubectl get pod <pod> -o yaml > pod-state.yaml
 kubectl logs <pod> > pod-logs.log
 
 # Network troubleshooting
-```bash
 kubectl run net-debug --image=nicolaka/netshoot --rm -it -- /bin/bash
 
 
