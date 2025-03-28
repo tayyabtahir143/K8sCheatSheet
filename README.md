@@ -193,7 +193,7 @@ kubectl annotate svc my-app \
 
 
 **Advanced Debugging:**
-```bash
+
 # Capture pod state for analysis
 kubectl get pod <pod> -o yaml > pod-state.yaml
 kubectl logs <pod> > pod-logs.log
