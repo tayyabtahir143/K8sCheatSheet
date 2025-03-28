@@ -30,7 +30,7 @@ A quick reference guide for Kubernetes commands, optimized for developers and De
 
 ---
 
-## 🔹 Pod Management
+## 🔹 🗂️ Pod Management
 
 | Command | Description |
 |---------|-------------|
@@ -45,7 +45,7 @@ A quick reference guide for Kubernetes commands, optimized for developers and De
 
 ---
 
-## 🔹 Deployment & Scaling
+## 🔹 🚀 Deployment & Scaling
 
 | Command | Description |
 |---------|-------------|
@@ -58,7 +58,7 @@ A quick reference guide for Kubernetes commands, optimized for developers and De
 
 ---
 
-## 🔹 Service & Networking
+## 🔹 🌐 Service & Networking
 
 | Command | Description |
 |---------|-------------|
@@ -70,7 +70,7 @@ A quick reference guide for Kubernetes commands, optimized for developers and De
 
 ---
 
-## 🔹 ConfigMaps & Secrets
+## 🔹 🔐 ConfigMaps & Secrets
 
 | Command | Description |
 |---------|-------------|
@@ -82,7 +82,7 @@ A quick reference guide for Kubernetes commands, optimized for developers and De
 
 ---
 
-## 🔹 Stateful Workloads
+## 🔹 📦 Stateful Workloads
 
 | Command | Description |
 |---------|-------------|
@@ -93,19 +93,7 @@ A quick reference guide for Kubernetes commands, optimized for developers and De
 
 ---
 
-## 🔹 Troubleshooting
-
-| Command | Description |
-|---------|-------------|
-| `kubectl get events --sort-by=.metadata.creationTimestamp` | Show cluster events |
-| `kubectl describe <resource> <name>` | Detailed resource inspection |
-| `kubectl api-resources` | List all API resources |
-| `kubectl get --raw /metrics` | View raw metrics |
-| `kubectl debug <pod> -it --image=busybox` | Debug pod (Ephemeral Container) |
-
----
-
-## 🔹 YAML Operations
+## 🔹 📄 YAML Operations
 
 | Command | Description |
 |---------|-------------|
@@ -117,7 +105,7 @@ A quick reference guide for Kubernetes commands, optimized for developers and De
 
 ---
 
-## 🔹 Advanced Commands
+## 🔹 🧠 Advanced Commands
 
 | Command | Description |
 |---------|-------------|
@@ -139,18 +127,23 @@ kubectl scale deploy nginx --replicas=3
 ```
 
 
-## 🔹 Debugging & Diagnostics
+## 🔹 🔍 Debugging & Diagnostics
 
 | Command | Description |
 |---------|-------------|
+| `kubectl describe <resource> <name>` | Detailed resource inspection |
 | `kubectl describe pod <pod>` | Show full pod details (events, state, etc.) |
 | `kubectl logs <pod> --previous` | View logs from crashed container |
 | `kubectl logs <pod> -c <container>` | View logs for specific container |
 | `kubectl debug -it <pod> --image=busybox --target=<pod>` | Debug pod with ephemeral container |
-| `kubectl get events --field-selector involvedObject.name=<pod>` | Filter events for specific pod |
 | `kubectl top pod --containers` | Show CPU/Memory per container |
 | `kubectl cp <pod>:/path/to/file ./local-file` | Copy file from pod |
+| `kubectl get events --field-selector involvedObject.name=<pod>` | Filter events for specific pod |
+| `kubectl get events --sort-by=.metadata.creationTimestamp` | Show cluster events |
 | `kubectl auth can-i <verb> <resource>` | Check RBAC permissions |
+| `kubectl api-resources` | List all API resources |
+| `kubectl get --raw /metrics` | View raw metrics |
+
 
 
 ## ☸️ Kubernetes Service Exposure  (Imperative Commands)
@@ -172,7 +165,7 @@ kubectl scale deploy nginx --replicas=3
 
 
 
-## Create deployment with pod anti-affinity and resource limits
+# 📦 Create deployment with pod anti-affinity and resource limits
 ```bash
 kubectl create deployment nginx-ha --image=nginx:latest \
   --replicas=2 \
@@ -202,12 +195,12 @@ cat <<EOF >> nginx-deployment.yaml
 EOF
 ```
 
-# Apply the deployment
+## Apply the deployment
 ```bash
 kubectl apply -f nginx-deployment.yaml
 ```
 
-# Expose as LoadBalancer
+## Expose as LoadBalancer
 ```bash
 kubectl expose deployment nginx-ha \
   --type=LoadBalancer \
@@ -216,7 +209,7 @@ kubectl expose deployment nginx-ha \
   --name=nginx-service
 ```
 
-# Advanced Debugging
+# 🔧 Advanced Debugging
 
 **Capture pod state for analysis**
 ```bash
