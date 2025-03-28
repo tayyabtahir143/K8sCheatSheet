@@ -138,8 +138,6 @@ kubectl scale deploy nginx --replicas=3
 
 
 
-# Kubernetes Commands Cheat Sheet ☸️
-
 ## 🔹 Debugging & Diagnostics
 
 | Command | Description |
