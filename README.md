@@ -170,18 +170,21 @@ kubectl scale deploy nginx --replicas=3
 
 
 
-# Advanced Debugging
+## Advanced Debugging
 
 **Capture pod state for analysis**
+
 `kubectl get pod <pod> -o yaml > pod-state.yaml`
 
 `kubectl logs <pod> > pod-logs.log`
 
 **Network troubleshooting**
-`'`kubectl run net-debug --image=nicolaka/netshoot --rm -it -- /bin/bash`
+
+`kubectl run net-debug --image=nicolaka/netshoot --rm -it -- /bin/bash`
 
 
 **Backup ETCD (Cluster State):**
+
 `ETCDCTL_API=3 etcdctl \
   --endpoints=https://127.0.0.1:2379 \
   --cacert=/etc/kubernetes/pki/etcd/ca.crt \
@@ -190,4 +193,5 @@ kubectl scale deploy nginx --replicas=3
   snapshot save /tmp/etcd-backup.db`
 
 **Verify backup**
+
 `etcdctl snapshot status /tmp/etcd-backup.db`
