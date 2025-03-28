@@ -209,13 +209,6 @@ kubectl expose deployment nginx-ha \
   --name=nginx-service
 ```
 
-# 🔧 Advanced Debugging
-
-**Capture pod state for analysis**
-```bash
-kubectl get pod <pod> -o yaml > pod-state.yaml
-kubectl logs <pod> > pod-logs.log
-```
 
 **Network troubleshooting**
 ```bash
@@ -223,16 +216,26 @@ kubectl run net-debug --image=nicolaka/netshoot --rm -it -- /bin/bash
 net-debug:~# 
 
 #Try these commands for troubleshooting:
-
-dig kubernetes.default.svc.cluster.local
+Check DNS Resolution:
+net-debug:~# dig kubernetes.default.svc.cluster.local
 
 # Or for external DNS:
+net-debug:~# dig google.com
 
-dig google.com
+Test Service Connectivity:
+net-debug:~# curl -v http://nginx.default.svc.cluster.local:80
+net-debug:~# nc -zv redis-master 6379
+
+
+Inspect Network Policies:
+net-debug:~# iptables -L -n | grep DROP  # Check blocked traffic
+
+Capture Pod Traffic:
+net-debug:~# tcpdump -i eth0 -w /tmp/capture.pcap  # Ctrl+C to stop
 
 ```
 
-**Backup ETCD (Cluster State):**
+## Backup ETCD (Cluster State)
 ```bash
 ETCDCTL_API=3 etcdctl \
    --endpoints=https://127.0.0.1:2379 \
