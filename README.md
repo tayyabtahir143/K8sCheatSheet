@@ -134,7 +134,9 @@ A quick reference guide for Kubernetes commands, optimized for developers and De
 **Deploy an app:**
 
 `kubectl create deployment nginx --image=nginx:latest --replicas=2`
+
 `kubectl expose deployment nginx --type=LoadBalancer --port=80 --target-port=80 --name=nginx-service`
+
 `kubectl scale deploy nginx --replicas=3`
 
 
