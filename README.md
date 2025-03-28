@@ -171,6 +171,51 @@ kubectl scale deploy nginx --replicas=3
 
 
 
+
+## Create deployment with pod anti-affinity and resource limits
+```bash
+kubectl create deployment nginx-ha --image=nginx:latest \
+  --replicas=2 \
+  --dry-run=client -o yaml > nginx-deployment.yaml
+```
+
+## Add resource limits and pod anti-affinity
+```bash
+cat <<EOF >> nginx-deployment.yaml
+          resources:
+            limits:
+              cpu: "1"
+              memory: "1Gi"
+            requests:
+              cpu: "500m"
+              memory: "512Mi"
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - nginx-ha
+            topologyKey: "kubernetes.io/hostname"
+EOF
+```
+
+# Apply the deployment
+```bash
+kubectl apply -f nginx-deployment.yaml
+```
+
+# Expose as LoadBalancer
+```bash
+kubectl expose deployment nginx-ha \
+  --type=LoadBalancer \
+  --port=80 \
+  --target-port=80 \
+  --name=nginx-service
+```
+
 # Advanced Debugging
 
 **Capture pod state for analysis**
