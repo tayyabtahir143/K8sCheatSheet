@@ -151,6 +151,47 @@ kubectl scale deploy nginx --replicas=3
 | `kubectl cp <pod>:/path/to/file ./local-file` | Copy file from pod |
 | `kubectl auth can-i <verb> <resource>` | Check RBAC permissions |
 
+
+## ☸️ Kubernetes Service Exposure  (Imperative Commands)
+
+### 🔹 Basic Service Exposure
+```bash
+# ClusterIP (internal-only)
+kubectl expose deployment my-app --port=80 --target-port=8080
+
+# NodePort (external access via node IP)
+kubectl expose deployment my-app --type=NodePort --port=80 --target-port=8080
+
+# LoadBalancer (cloud providers)
+kubectl expose deployment my-app --type=LoadBalancer --port=80 --target-port=8080
+
+# ExternalName (DNS CNAME)
+kubectl create service externalname external-db --external-name=legacy.example.com
+
+# Headless Service (direct pod DNS)
+kubectl create service clusterip headless-svc --clusterip="None" --tcp=80:8080
+
+# Custom NodePort range (30000-32767)
+kubectl expose deployment my-app --type=NodePort --port=80 --target-port=8080 --name=my-service --node-port=31000
+
+# Cloud-specific LoadBalancer (AWS NLB example)
+kubectl expose deployment my-app --type=LoadBalancer --port=80 --target-port=8080 --name=my-nlb
+kubectl annotate svc my-nlb service.beta.kubernetes.io/aws-load-balancer-type="nlb"
+
+# Multiple ports exposure
+kubectl expose deployment my-app --type=LoadBalancer --port=80 --target-port=8080 --name=multi-port --port=443 --target-port=8443
+
+# Generate YAML without applying (dry-run)
+kubectl expose deployment my-app --type=LoadBalancer --port=80 --dry-run=client -o yaml
+
+# Preserve client IP (LoadBalancer)
+kubectl patch svc my-app -p '{"spec":{"externalTrafficPolicy":"Local"}}'
+
+# Restrict LoadBalancer source IPs (AWS example)
+kubectl annotate svc my-app \
+  service.beta.kubernetes.io/load-balancer-source-ranges="192.0.2.0/24,203.0.113.0/24"
+
+
 **Advanced Debugging:**
 ```bash
 # Capture pod state for analysis
