@@ -154,8 +154,8 @@ kubectl scale deploy nginx --replicas=3
 
 ## ☸️ Kubernetes Service Exposure  (Imperative Commands)
 
-### 🔹 Basic Service Exposure
-```bash
+'### 🔹 Basic Service Exposure
+
 # ClusterIP (internal-only)
 kubectl expose deployment my-app --port=80 --target-port=8080
 
@@ -189,7 +189,7 @@ kubectl patch svc my-app -p '{"spec":{"externalTrafficPolicy":"Local"}}'
 
 # Restrict LoadBalancer source IPs (AWS example)
 kubectl annotate svc my-app \
-  service.beta.kubernetes.io/load-balancer-source-ranges="192.0.2.0/24,203.0.113.0/24"
+  service.beta.kubernetes.io/load-balancer-source-ranges="192.0.2.0/24,203.0.113.0/24"'
 
 
 **Advanced Debugging:**
