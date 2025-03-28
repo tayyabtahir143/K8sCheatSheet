@@ -153,6 +153,7 @@ kubectl scale deploy nginx --replicas=3
 
 **Advanced Debugging:**
 # Capture pod state for analysis
+```bash
 kubectl get pod <pod> -o yaml > pod-state.yaml
 kubectl logs <pod> > pod-logs.log
 
