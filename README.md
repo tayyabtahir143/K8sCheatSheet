@@ -132,7 +132,6 @@ A quick reference guide for Kubernetes commands, optimized for developers and De
 ## 📝 Example Workflows
 
 **1. Deploy an app:**
-```bash
 kubectl create deploy nginx --image=nginx
 kubectl expose deploy nginx --port=80
 kubectl scale deploy nginx --replicas=3
