@@ -162,12 +162,11 @@ kubectl scale deploy nginx --replicas=3
 | `kubectl create service externalname external-db --external-name=legacy.example.com` | ExternalName (DNS CNAME) |
 | `kubectl create service clusterip headless-svc --clusterip="None" --tcp=80:8080` | Headless Service (direct pod DNS) |
 | `kubectl expose deployment my-app --type=NodePort --port=80 --target-port=8080 --name=my-service --node-port=31000` | Custom NodePort range (30000-32767) |
-| `kubectl expose deployment my-app --type=LoadBalancer --port=80 --target-port=8080 --name=my-nlb \n kubectl annotate svc my-nlb service.beta.kubernetes.io/aws-load-balancer-type="nlb"` | Cloud-specific LoadBalancer (AWS NLB example) |
+| <pre>`kubectl expose deployment my-app --type=LoadBalancer --port=80 --target-port=8080 --name=my-nlb`<br>`kubectl annotate svc my-nlb service.beta.kubernetes.io/aws-load-balancer-type="nlb"`</pre> | Cloud-specific LoadBalancer (AWS NLB example) |
 | `kubectl expose deployment my-app --type=LoadBalancer --port=80 --target-port=8080 --name=multi-port --port=443 --target-port=8443` | Multiple ports exposure |
 | `kubectl expose deployment my-app --type=LoadBalancer --port=80 --dry-run=client -o yaml` | Generate YAML without applying (dry-run) |
 | `kubectl patch svc my-app -p '{"spec":{"externalTrafficPolicy":"Local"}}'` | Preserve client IP (LoadBalancer) |
-| `kubectl annotate svc my-app \
-  service.beta.kubernetes.io/load-balancer-source-ranges="192.0.2.0/24,203.0.113.0/24"'` | Restrict LoadBalancer source IPs (AWS example) |
+| `kubectl annotate svc my-app service.beta.kubernetes.io/load-balancer-source-ranges="192.0.2.0/24,203.0.113.0/24"'` | Restrict LoadBalancer source IPs (AWS example) |
 
 
 
