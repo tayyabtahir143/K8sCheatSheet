@@ -166,29 +166,28 @@ kubectl scale deploy nginx --replicas=3
 | `kubectl expose deployment my-app --type=LoadBalancer --port=80 --target-port=8080 --name=multi-port --port=443 --target-port=8443` | Multiple ports exposure |
 | `kubectl expose deployment my-app --type=LoadBalancer --port=80 --dry-run=client -o yaml` | Generate YAML without applying (dry-run) |
 | `kubectl patch svc my-app -p '{"spec":{"externalTrafficPolicy":"Local"}}'` | Preserve client IP (LoadBalancer) |
-| `kubectl annotate svc my-app service.beta.kubernetes.io/load-balancer-source-ranges="192.0.2.0/24,203.0.113.0/24"'` | Restrict LoadBalancer source IPs (AWS example) |
+| `kubectl annotate svc my-app service.beta.kubernetes.io/load-balancer-source-ranges="192.0.2.0/24,203.0.113.0/24"` | Restrict LoadBalancer source IPs (AWS example) |
 
 
 
 
-**Advanced Debugging:**
+# Advanced Debugging
 
-# Capture pod state for analysis
-kubectl get pod <pod> -o yaml > pod-state.yaml
-kubectl logs <pod> > pod-logs.log
+**Capture pod state for analysis**
+'kubectl get pod <pod> -o yaml > pod-state.yaml'
+'kubectl logs <pod> > pod-logs.log'
 
-# Network troubleshooting
-kubectl run net-debug --image=nicolaka/netshoot --rm -it -- /bin/bash
+**Network troubleshooting**
+'kubectl run net-debug --image=nicolaka/netshoot --rm -it -- /bin/bash'
 
 
 **Backup ETCD (Cluster State):**
-# For clusters using etcdctl
-ETCDCTL_API=3 etcdctl \
+'ETCDCTL_API=3 etcdctl \
   --endpoints=https://127.0.0.1:2379 \
   --cacert=/etc/kubernetes/pki/etcd/ca.crt \
   --cert=/etc/kubernetes/pki/etcd/server.crt \
   --key=/etc/kubernetes/pki/etcd/server.key \
-  snapshot save /tmp/etcd-backup.db
+  snapshot save /tmp/etcd-backup.db'
 
-# Verify backup
-etcdctl snapshot status /tmp/etcd-backup.db
+**Verify backup**
+'etcdctl snapshot status /tmp/etcd-backup.db'
